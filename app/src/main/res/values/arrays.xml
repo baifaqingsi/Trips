@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string-array name="menu_letf_lv">
+
+        <item>热门游记</item>
+
+
+        <item>面包定制</item>
+
+        <item>设置</item>
+
+    </string-array>
+</resources>

@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Trips</string>
+    <string name="drawer_open">打开</string>
+    <string name="drawer_close">关闭</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="search_title">search</string>
+    <string name="drawer_login">登录</string>
+    <string name="drawer_item_one">热门游记</string>
+    <string name="drawer_item_two">面包定制</string>
+    <string name="drawer_item_three">设置</string>
+</resources>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@mipmap/bg_homepage_left_drawer"
+    android:orientation="vertical">
+
+        <include
+            android:id="@+id/login_left"
+            layout="@layout/login_left" />
+
+        <include
+            android:id="@+id/menu_left"
+            layout="@layout/menu_left"/>
+
+</LinearLayout>
