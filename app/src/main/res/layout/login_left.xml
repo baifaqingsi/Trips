@@ -17,7 +17,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="@string/drawer_login"
-        android:textSize="25dp"
+        android:textSize="15dp"
         android:clickable="true"
         android:layout_below="@+id/login_iv"
         android:layout_centerHorizontal="true"

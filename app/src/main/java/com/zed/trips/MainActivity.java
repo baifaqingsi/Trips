@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         setContentView(R.layout.activity_main);
         mDrawerLayout = (DrawerLayout) findViewById(R.id.main_drawer_layout);
         mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
+        mToolbar.setTitleTextAppearance(MainActivity.this,R.style.ToolbarTitleSize);
         drawer_left = findViewById(R.id.drawer_left);
         //左菜单登录模块
         login_left = drawer_left.findViewById(R.id.login_left);
@@ -126,6 +127,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     case 1:
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_content, new OrderFragment()).commit();
                         mToolbar.setTitle(getString(R.string.drawer_item_two));
+
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
                             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
                                 mToolbar.setBackground(getDrawable(R.drawable.actionbar_bg));

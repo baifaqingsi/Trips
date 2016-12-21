@@ -11,4 +11,16 @@
         <item>设置</item>
 
     </string-array>
+
+    <string-array name="setting_lv">
+
+        <item>清空缓存</item>
+
+        <item>关于我</item>
+
+        <item>去评分</item>
+
+        <item>精品旅行工具</item>
+
+    </string-array>
 </resources>

@@ -12,10 +12,11 @@ import com.zed.trips.R;
 /**
  * Created by hc on 16-12-16.
  */
-public class OrderFragment extends Fragment {
-    @Nullable
+public class OrderFragment extends BaseFragment {
+
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_order, container, false);
+    protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_order, container, false);
+        return view;
     }
 }
