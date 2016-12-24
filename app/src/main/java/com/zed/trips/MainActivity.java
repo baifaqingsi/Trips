@@ -17,8 +17,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.zed.Utils.Constans;
-import com.zed.Utils.Util;
+import com.zed.utils.Constans;
+import com.zed.utils.Util;
 import com.zed.fragment.HotFragment;
 import com.zed.fragment.OrderFragment;
 import com.zed.fragment.SettingFragment;

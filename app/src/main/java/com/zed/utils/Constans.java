@@ -1,4 +1,4 @@
-package com.zed.Utils;
+package com.zed.utils;
 
 /**
  * Created by hc on 16-12-23.

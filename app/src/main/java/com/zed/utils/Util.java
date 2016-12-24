@@ -1,4 +1,4 @@
-package com.zed.Utils;
+package com.zed.utils;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -12,7 +12,7 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
-import com.zed.Application.BaseApplication;
+import com.zed.application.BaseApplication;
 
 /**
  * Created by hc on 16-12-23.

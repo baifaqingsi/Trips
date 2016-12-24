@@ -1,4 +1,4 @@
-package com.zed.Application;
+package com.zed.application;
 
 import android.app.Application;
 import android.content.Context;

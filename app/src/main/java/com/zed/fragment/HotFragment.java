@@ -9,13 +9,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 import com.zed.trips.LoginActivity;
 import com.zed.trips.R;
 
-import com.zed.Utils.Constans;
-import com.zed.Utils.Util;
+import com.zed.utils.Constans;
+import com.zed.utils.Util;
 
 public class HotFragment extends BaseFragment implements View.OnClickListener {
 
