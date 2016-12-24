@@ -13,7 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
-import view.CustomVedioView;
+import com.zed.view.CustomVedioView;
 
 public class GuideActivity extends AppCompatActivity {
 

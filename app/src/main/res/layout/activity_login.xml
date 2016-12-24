@@ -13,7 +13,7 @@
         <ImageView
             android:layout_width="15dp"
             android:layout_height="15dp"
-            android:id="@+id/imageView"
+            android:id="@+id/cancel_login"
             android:clickable="true"
             android:src="@drawable/cancel_press"
             android:layout_marginLeft="20dp"
@@ -31,7 +31,7 @@
             android:textSize="30sp"
             android:textColor="@color/White"
             android:layout_marginTop="58dp"
-            android:layout_below="@+id/imageView"
+            android:layout_below="@+id/cancel_login"
             android:layout_centerHorizontal="true"
             android:id="@+id/textView" />
 
@@ -50,7 +50,9 @@
                 android:layout_height="100dp"
                 android:background="?android:attr/listDivider"
                 android:layout_weight="1"
-                android:src="@drawable/im_login_more_sns_qq_press" />
+                android:clickable="true"
+                android:src="@drawable/im_login_more_sns_qq_press"
+                android:id="@+id/qq_login" />
 
             <View
                 android:layout_width="1px"
@@ -62,7 +64,9 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
-                android:src="@drawable/im_login_more_sns_sina_press" />
+                android:clickable="true"
+                android:src="@drawable/im_login_more_sns_sina_press"
+                android:id="@+id/weibo_login" />
 
             <View
                 android:layout_width="1px"
@@ -73,7 +77,8 @@
                 android:layout_width="100dp"
                 android:layout_height="100dp"
                 android:layout_weight="1"
-                android:src="@drawable/im_login_more_sns_wx_press" />
+                android:src="@drawable/im_login_more_sns_wx_press"
+                android:id="@+id/wx_login" />
         </LinearLayout>
 
         <LinearLayout
@@ -111,25 +116,74 @@
         </LinearLayout>
 
         <LinearLayout
+            android:id="@+id/ll3"
             android:layout_below="@+id/ll2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
             <Button
+                android:textColor="@color/Black"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center"
                 android:layout_width="189dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/login_corner"
-                android:text="使用手机号码登录"/>
+                android:text="@string/moble_number_login"
+                android:clickable="true"
+                android:id="@+id/mobile_login" />
 
             <Button
+                android:textColor="@color/Black"
                 android:layout_marginTop="20dp"
                 android:layout_gravity="center"
                 android:layout_width="189dp"
                 android:layout_height="wrap_content"
                 android:background="@drawable/login_corner"
-                android:text="使用手机号码登录"/>
+                android:text="@string/account_login"
+                android:clickable="true"
+                android:id="@+id/account_login" />
+
+
+            <View
+                android:layout_height="1px"
+                android:layout_width="match_parent"
+                android:background="@color/White"
+                android:layout_marginTop="50dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_below="@+id/ll3"
+            android:layout_alignParentBottom="true"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal">
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/forget_passwd"
+                android:clickable="true"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:id="@+id/pass_login" />
+
+            <View
+                android:layout_height="fill_parent"
+                android:layout_width="1px"
+                android:background="@color/White" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/regester_account"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:clickable="true"
+                android:id="@+id/regester_login" />
 
         </LinearLayout>
 

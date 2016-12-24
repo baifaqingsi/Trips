@@ -3,23 +3,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="fragment.HotFragment">
+    android:background="#FBF7ED"
+    tools:context="com.zed.fragment.HotFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="redian" />
+        android:layout_height="match_parent">
 
-    <ImageButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="20dp"
-        android:src="@drawable/fab_plus"
-        android:background="@drawable/im_bind_phone_get_code_normal"
-        android:clickable="true" />
+
+        <!-- TODO: Update blank fragment layout -->
+        <TextView
+            android:id="@+id/no_net_tv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="redian" />
+
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/cry"
+            android:id="@+id/no_net_iv"
+            android:layout_marginTop="164dp"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <Button
+            android:textColor="@color/Black"
+            android:layout_gravity="center"
+            android:layout_width="189dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/login_corner"
+            android:text="@string/reload"
+            android:clickable="true"
+            android:id="@+id/no_net_btn"
+            android:layout_below="@+id/no_net_iv"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="68dp" />
+
+        <ImageButton
+            android:id="@+id/fab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom|end"
+            android:src="@drawable/fab_plus"
+            android:background="@drawable/im_bind_phone_get_code_normal"
+            android:clickable="true"
+            android:layout_marginRight="25dp"
+            android:layout_marginBottom="25dp"
+            android:layout_marginEnd="25dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true" />
+
+
+    </RelativeLayout>
+
 
 </FrameLayout>

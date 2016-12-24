@@ -1,6 +1,7 @@
 package com.zed.trips;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.NavigationView;
@@ -8,6 +9,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -15,9 +17,11 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import fragment.HotFragment;
-import fragment.OrderFragment;
-import fragment.SettingFragment;
+import com.zed.Utils.Constans;
+import com.zed.Utils.Util;
+import com.zed.fragment.HotFragment;
+import com.zed.fragment.OrderFragment;
+import com.zed.fragment.SettingFragment;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
 
@@ -38,6 +42,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // Log.d("hc","handler name M"+mHandler.toString());
 
         initView();
 
@@ -56,43 +61,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         mDrawerToggle.syncState();//初始化状态
         mDrawerLayout.setDrawerListener(mDrawerToggle);
 
-     /*   mNavigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.item_one:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_content, new HotFragment()).commit();
-                        mToolbar.setTitle(getString(R.string.drawer_item_one));
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                mToolbar.setBackground(getDrawable(R.drawable.actionbar_bg));
-                            }
-                        }
-                        break;
-                    case R.id.item_two:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_content, new HotFragment()).commit();
-                        mToolbar.setTitle(getString(R.string.drawer_item_two));
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                mToolbar.setBackground(getDrawable(R.drawable.actionbar_bg));
-                            }
-                        }
-                        break;
-                    case R.id.item_three:
-                        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_content, new HotFragment()).commit();
-                        mToolbar.setTitle(getString(R.string.drawer_item_three));
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                                mToolbar.setBackground(getDrawable(R.drawable.actionbar_bg));
-                            }
-                        }
-                        break;
-                }
-                menuItem.setChecked(true);//点击了把它设为选中状态
-                mDrawerLayout.closeDrawers();//关闭抽屉
-                return true;
-            }
-        });*/
     }
 
     private void initView() {
@@ -105,7 +73,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         login_left = drawer_left.findViewById(R.id.login_left);
         login_tv = (TextView) login_left.findViewById(R.id.login_tv);
         login_tv.setOnClickListener(this);
-        login_iv = (ImageView) login_left.findViewById(R.id.login_iv);
+
+        login_iv = (ImageView) login_left.findViewById(R.id.cancel_login);
         login_iv.setOnClickListener(this);
         //左菜单菜单模块
         menu_left = drawer_left.findViewById(R.id.menu_left);
@@ -117,6 +86,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 (this,R.layout.menu_left_lv_item,items);
         //获取ListView对象，通过调用setAdapter方法为ListView设置Adapter设置适配器
         menu_left_lv.setAdapter(adapter);
+        getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_content, new HotFragment()).commit();
         menu_left_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -152,11 +122,34 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.login_iv:
+            case R.id.cancel_login:
             case R.id.login_tv:
-               startActivity(new Intent(MainActivity.this,LoginActivity.class));
+                startActivityForResult(new Intent(MainActivity.this, LoginActivity.class), Constans.UPDATE);
+                //startActivity();
                 break;
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == 1) {
+            String nickname = data.getStringExtra("nickname");
+            final String figureurl = data.getStringExtra("figureurl");
+            Log.d("hc", "nickname " + nickname);
+            login_tv.setText(nickname);
+            new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    final Bitmap bitmap = Util.getbitmap(figureurl);
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            login_iv.setImageBitmap(bitmap);
+                        }
+                    });
+                }
+            }).start();
+        }
+    }
 }

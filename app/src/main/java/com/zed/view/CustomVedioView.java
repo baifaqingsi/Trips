@@ -1,4 +1,4 @@
-package view;
+package com.zed.view;
 
 import android.content.Context;
 import android.media.MediaPlayer;

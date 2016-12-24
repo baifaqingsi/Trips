@@ -12,4 +12,11 @@
     <string name="drawer_item_three">设置</string>
     <string name="login_hello">你好，面粉！</string>
     <string name="use_account_login">使用面包账号登录</string>
+    <string name="moble_number_login">使用手机号码登录</string>
+    <string name="account_login">使用面包账号登录</string>
+    <string name="forget_passwd">忘记密码</string>
+    <string name="regester_account">注册账号</string>
+    <string name="weibosdk_demo_toast_auth_canceled">取消授权</string>
+    <string name="weibosdk_demo_token_to_string_format_1">Token：%1$s \\n有效期：%2$s</string>
+    <string name="reload">重新加载</string>
 </resources>

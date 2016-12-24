@@ -1,8 +1,6 @@
-package fragment;
+package com.zed.fragment;
 
 import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,5 +30,10 @@ public class SettingFragment extends BaseFragment {
         //获取ListView对象，通过调用setAdapter方法为ListView设置Adapter设置适配器
         listView.setAdapter(adapter);
         return view;
+    }
+
+    @Override
+    protected void initEnevt() {
+
     }
 }

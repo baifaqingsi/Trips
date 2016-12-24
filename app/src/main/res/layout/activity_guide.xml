@@ -11,7 +11,7 @@
         android:id="@+id/guide_iv"
         android:background="@mipmap/main_default"/>
 
-    <view.CustomVedioView
+    <com.zed.view.CustomVedioView
         android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"

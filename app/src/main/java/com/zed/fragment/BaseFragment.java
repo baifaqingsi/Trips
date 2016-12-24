@@ -1,4 +1,4 @@
-package fragment;
+package com.zed.fragment;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -18,9 +18,13 @@ public abstract class BaseFragment extends Fragment {
 
         View view=initView(inflater, container, savedInstanceState);
 
+        initEnevt();
+
         return view;
     }
 
     protected abstract View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState);
+
+    protected abstract void initEnevt();
 
 }
