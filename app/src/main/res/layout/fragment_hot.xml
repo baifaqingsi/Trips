@@ -11,12 +11,10 @@
         android:layout_height="match_parent">
 
 
-        <!-- TODO: Update blank fragment layout -->
-        <TextView
-            android:id="@+id/no_net_tv"
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/recy_hot"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="redian" />
+            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
 
 
         <ImageView
@@ -24,11 +22,13 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/cry"
             android:id="@+id/no_net_iv"
+            android:visibility="gone"
             android:layout_marginTop="164dp"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 
         <Button
+            android:visibility="gone"
             android:textColor="@color/Black"
             android:layout_gravity="center"
             android:layout_width="189dp"

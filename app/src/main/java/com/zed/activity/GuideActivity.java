@@ -1,8 +1,11 @@
-package com.zed.trips;
+package com.zed.activity;
 
+import android.content.BroadcastReceiver;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.media.MediaPlayer;
+import android.net.ConnectivityManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -13,6 +16,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.zed.fragment.HotFragment;
+import com.zed.trips.R;
 import com.zed.view.CustomVedioView;
 
 public class GuideActivity extends AppCompatActivity {
@@ -67,6 +72,14 @@ public class GuideActivity extends AppCompatActivity {
             }
         });
         Log.d("hc","initEnevt");
+
+        /////////动态注册广播
+
+        IntentFilter mFilter = new IntentFilter();
+        mFilter.addAction(ConnectivityManager.CONNECTIVITY_ACTION);
+        HotFragment hotFragment = new HotFragment();
+        BroadcastReceiver netReceiver = hotFragment.NetReceiver;
+        registerReceiver(netReceiver, mFilter);
     }
 
     private void initView() {

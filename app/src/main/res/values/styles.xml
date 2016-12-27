@@ -13,4 +13,31 @@
         <item name="android:textSize">15dp</item> <!--  搞掂字体大小-->
     </style>
 
+    <style name="Card">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">200dp</item>
+        <item name="android:layout_marginBottom">16dp</item>
+
+        <item name="cardBackgroundColor">@android:color/white</item>
+        <item name="cardCornerRadius">@dimen/dp_6</item>
+        <item name="cardElevation">@dimen/dp_4</item>
+    </style>
+
+    <style name="CardPhoto">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:tint">@color/photo_tint</item>
+
+        <item name="android:scaleType">centerCrop</item>
+        <item name="riv_corner_radius">6dp</item>
+    </style>
+
+    <style name="DetailStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">@dimen/sp_12</item>
+        <item name="android:textColor">@color/White</item>
+    </style>
+
+
 </resources>

@@ -1,4 +1,4 @@
-package com.zed.trips;
+package com.zed.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -22,6 +22,7 @@ import com.tencent.tauth.UiError;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.zed.trips.R;
 import com.zed.utils.Constans;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:background="@mipmap/bg_homepage_left_drawer"
     android:layout_height="match_parent"
-    tools:context="com.zed.trips.LoginActivity">
+    tools:context="com.zed.activity.LoginActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

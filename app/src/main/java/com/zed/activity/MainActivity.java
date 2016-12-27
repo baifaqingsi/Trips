@@ -1,4 +1,4 @@
-package com.zed.trips;
+package com.zed.activity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.zed.trips.R;
 import com.zed.utils.Constans;
 import com.zed.utils.Util;
 import com.zed.fragment.HotFragment;
@@ -93,6 +94,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 switch (position){
                     case 0:
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_content, new HotFragment()).commit();
+                        mToolbar.setTitle("");
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+                            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                                mToolbar.setBackground(getDrawable(R.drawable.actionbar_bg_featured));
+                            }
+                        }
                         break;
                     case 1:
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_content, new OrderFragment()).commit();
