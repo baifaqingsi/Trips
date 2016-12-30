@@ -11,10 +11,10 @@
         android:layout_height="match_parent">
 
 
-        <android.support.v7.widget.RecyclerView
+        <com.zed.recycler.view.LRecyclerView
             android:id="@+id/recy_hot"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></android.support.v7.widget.RecyclerView>
+            android:layout_height="match_parent"></com.zed.recycler.view.LRecyclerView>
 
 
         <ImageView

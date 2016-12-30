@@ -14,6 +14,8 @@ public class Constans {
     //热门游记首页api
     public static final String TRIPS_HOT_URL = TRIPS_BASE_URL + "v2/index/";
 
+    public static final String WEB_VIEW_URL = "web_view_url";
+
 
     /**
      * 热门城市首页api

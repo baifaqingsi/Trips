@@ -5,9 +5,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
-import android.support.v4.widget.SwipeRefreshLayout;
+import android.os.Handler;
+import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,11 +16,16 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 
+import com.bumptech.glide.Glide;
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.callback.StringCallback;
 import com.zed.activity.LoginActivity;
-import com.zed.adapter.RecyclerAdapter;
+import com.zed.adapter.HotAdapter;
+import com.zed.adapter.ViewPagerAdapter;
 import com.zed.bean.HotBean;
+import com.zed.bean.ViewPagerBean;
+import com.zed.recycler.adapter.LRecyclerViewAdapter;
+import com.zed.recycler.view.LRecyclerView;
 import com.zed.trips.R;
 import com.zed.utils.Constans;
 import com.zed.utils.Util;
@@ -40,20 +45,27 @@ public class HotFragment extends BaseFragment implements View.OnClickListener {
     private ImageButton fab;
     private Button no_net_btn;
     private ImageView no_net_iv;
-    private RecyclerView recy_hot;
-    private RecyclerAdapter recyclerAdapter;
+    private LRecyclerView recy_hot;
     private LinearLayoutManager recyclerViewLayoutManager;
     private ArrayList<String> mData;
     private String string;
+    private LRecyclerViewAdapter lRecyclerViewAdapter;
+    private HotAdapter hotAdapter;
+    private View view;
+    private ViewPager mViewPager;
+
+
+    private boolean isRefresh, isAddHeaderView;
+    private ViewPagerAdapter viewPagerAdapter;
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_hot, container, false);
+        view = inflater.inflate(R.layout.fragment_hot, container, false);
         fab = (ImageButton) view.findViewById(R.id.fab);
         fab.setOnClickListener(this);
         no_net_btn = (Button) view.findViewById(R.id.no_net_btn);
         no_net_iv = (ImageView) view.findViewById(R.id.no_net_iv);
-        recy_hot = (RecyclerView) view.findViewById(R.id.recy_hot);
+        recy_hot = (LRecyclerView) view.findViewById(R.id.recy_hot);
 
 
         return view;
@@ -70,9 +82,12 @@ public class HotFragment extends BaseFragment implements View.OnClickListener {
             //设置布局管理器
             recy_hot.setLayoutManager(recyclerViewLayoutManager);
             //设置adapter
-            recyclerAdapter = new RecyclerAdapter(mHotBean, getActivity());
+            // recyclerAdapter = new RecyclerAdapter(mHotBean, getActivity());
+            hotAdapter = new HotAdapter(getActivity(), mHotBean);
 
-            recy_hot.setAdapter(recyclerAdapter);
+            lRecyclerViewAdapter = new LRecyclerViewAdapter(hotAdapter);
+
+            recy_hot.setAdapter(lRecyclerViewAdapter);
 
 
         } else {
@@ -95,11 +110,20 @@ public class HotFragment extends BaseFragment implements View.OnClickListener {
     //列表数据
     List<HotBean> mHotBean = new ArrayList<>();
 
+    //轮播数据
+    List<ViewPagerBean> mViewPagerBean = new ArrayList<>();
+
     private void parseJson(String s) {
+
+
         try {
             JSONObject jsonObject = new JSONObject(s);
+
             if (jsonObject.getString("status").equals("0")) {
                 JSONObject data = jsonObject.getJSONObject("data");
+
+                parseDetailData(data);
+
                 JSONArray elements = data.getJSONArray("elements");
                 for (int i = 0; i < elements.length(); i++) {
                     JSONObject json = (JSONObject) elements.get(i);
@@ -118,12 +142,82 @@ public class HotFragment extends BaseFragment implements View.OnClickListener {
                     }
                 }
 
+                View headView = initHeaderView(mViewPagerBean);
+
+                if (!isAddHeaderView) {
+                    isAddHeaderView = true;
+                    lRecyclerViewAdapter.addHeaderView(headView);
+                }
+
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
 
+        hotAdapter.setDatas(mHotBean);
+        viewPagerAdapter.setDatas(mViewPagerBean);
+    }
 
+
+    /**
+     * 解析详情数据
+     *
+     * @param dataResults dataResults
+     * @throws JSONException
+     */
+    private void parseDetailData(JSONObject dataResults) throws JSONException {
+        JSONArray mElementsArray = dataResults.getJSONArray("elements");
+        int length = mElementsArray.length();
+        mViewPagerBean.clear();
+        for (int i = 0; i < length; i++) {
+            JSONObject mElementsObject = (JSONObject) mElementsArray.get(i);
+            if (mElementsObject.getString("type").equals("1")) {  //轮播图
+                JSONArray jsonArray = mElementsObject.getJSONArray("data");
+                JSONArray bannerArrays = (JSONArray) jsonArray.get(0);
+                for (int i1 = 0; i1 < bannerArrays.length(); i1++) {
+                    ViewPagerBean viewPagerBean = new ViewPagerBean();
+                    JSONObject bannerObject = (JSONObject) bannerArrays.get(i1);
+                    viewPagerBean.html_url = bannerObject.getString("html_url");
+                    viewPagerBean.image_url = bannerObject.getString("image_url");
+                    viewPagerBean.platform = bannerObject.getString("platform");
+                    mViewPagerBean.add(viewPagerBean);
+                }
+
+            }
+
+        }
+
+    }
+
+
+    private View initHeaderView(List<ViewPagerBean> mViewPagerBean) {
+        View headerView = LayoutInflater.from(getActivity())
+                .inflate(R.layout.viewpager_layout, (ViewGroup) view.findViewById(android.R.id.content), false);
+        mViewPager = (ViewPager) headerView.findViewById(R.id.view_pager);
+
+        viewPagerAdapter = new ViewPagerAdapter(mViewPagerBean, getActivity());
+
+        mViewPager.setAdapter(viewPagerAdapter);
+        //  mViewPager.setOnPageChangeListener(new MyPagerListener(mIndicator, imgUrls.size()));
+        autoScorll();
+        return headerView;
+    }
+
+    private Handler mHandler = new Handler();
+
+    /**
+     * 自动滚动
+     */
+    private void autoScorll() {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                int currentItem = mViewPager.getCurrentItem();
+                mViewPager.setCurrentItem(currentItem + 1);
+                mHandler.postDelayed(this, 5000);
+            }
+        }, 5000);
     }
 
 
