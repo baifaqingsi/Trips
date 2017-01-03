@@ -6,6 +6,9 @@ import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewParent;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -18,6 +21,36 @@ import com.zed.application.BaseApplication;
  * Created by hc on 16-12-23.
  */
 public class Util {
+
+    /**
+     * 延迟执行 任务
+     *
+     * @param run  任务
+     * @param time 延迟的时间
+     */
+    public static void postDelayed(Runnable run, int time) {
+        BaseApplication.getHandler().postDelayed(run, time); // 调用Runable里面的run方法
+    }
+
+    /**
+     * 取消任务
+     *
+     * @param auToRunTask
+     */
+    public static void cancel(Runnable auToRunTask) {
+        BaseApplication.getHandler().removeCallbacks(auToRunTask);
+    }
+
+
+    public static void removeParent(View v) {
+        //  先找到爹 在通过爹去移除孩子
+        ViewParent parent = v.getParent();
+        //所有的控件 都有爹  爹一般情况下 就是ViewGoup
+        if (parent instanceof ViewGroup) {
+            ViewGroup group = (ViewGroup) parent;
+            group.removeView(v);
+        }
+    }
 
     public static Bitmap getbitmap(String imageUri) {
         Log.v("hc", "getbitmap:" + imageUri);

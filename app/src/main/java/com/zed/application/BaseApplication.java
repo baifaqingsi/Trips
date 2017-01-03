@@ -2,6 +2,7 @@ package com.zed.application;
 
 import android.app.Application;
 import android.content.Context;
+import android.os.Handler;
 
 import com.lzy.okgo.OkGo;
 import com.lzy.okgo.cache.CacheEntity;
@@ -16,12 +17,18 @@ import java.util.logging.Level;
 public class BaseApplication extends Application {
 
     private static Context mContext;
+    private static Handler handler;
+
+    public static Handler getHandler() {
+        return handler;
+    }
 
 
     @Override
     public void onCreate() {
         super.onCreate();
         mContext = getApplicationContext();
+        handler = new Handler();
         //必须调用初始化
         OkGo.init(this);
         //以下设置的所有参数是全局参数,同样的参数可以在请求的时候再设置一遍,那么对于该请求来讲,请求中的参数会覆盖全局参数
