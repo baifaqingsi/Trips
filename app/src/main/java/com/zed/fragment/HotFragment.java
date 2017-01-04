@@ -3,10 +3,12 @@ package com.zed.fragment;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.widget.LinearLayoutManager;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -25,7 +27,11 @@ import com.zed.adapter.ViewPagerAdapter;
 import com.zed.bean.HotBean;
 import com.zed.bean.ViewPagerBean;
 import com.zed.recycler.adapter.LRecyclerViewAdapter;
+import com.zed.recycler.interfaces.OnLoadMoreListener;
+import com.zed.recycler.interfaces.OnRefreshListener;
+import com.zed.recycler.utils.RecyclerViewStateUtils;
 import com.zed.recycler.view.LRecyclerView;
+import com.zed.recycler.view.LoadingFooter;
 import com.zed.trips.R;
 import com.zed.utils.Constans;
 import com.zed.utils.Util;
@@ -40,7 +46,7 @@ import java.util.List;
 import okhttp3.Call;
 import okhttp3.Response;
 
-public class HotFragment extends BaseFragment implements View.OnClickListener {
+public class HotFragment extends BaseFragment implements View.OnClickListener, OnRefreshListener, OnLoadMoreListener {
 
     private ImageButton fab;
     private Button no_net_btn;
@@ -56,10 +62,16 @@ public class HotFragment extends BaseFragment implements View.OnClickListener {
     private ImageView[] mBottomImages;//底部只是当前页面的小圆点
     //设置当前 第几个图片 被选中
     private int autoCurrIndex = 0;
-
     private boolean isRefresh, isAddHeaderView;
     private ViewPagerAdapter viewPagerAdapter;
     private LinearLayout llHottestIndicator;
+    private String next_start;
+
+    // 自动轮询的实现
+    boolean flag;
+    private AuToRunTask runTask = new AuToRunTask();
+    ;
+    private SharedPreferences trips;
 
     @Override
     protected View initView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -69,7 +81,7 @@ public class HotFragment extends BaseFragment implements View.OnClickListener {
         no_net_btn = (Button) view.findViewById(R.id.no_net_btn);
         no_net_iv = (ImageView) view.findViewById(R.id.no_net_iv);
         recy_hot = (LRecyclerView) view.findViewById(R.id.recy_hot);
-
+        trips = getActivity().getSharedPreferences("Trips", Context.MODE_PRIVATE);
 
         return view;
     }
@@ -91,6 +103,12 @@ public class HotFragment extends BaseFragment implements View.OnClickListener {
             lRecyclerViewAdapter = new LRecyclerViewAdapter(hotAdapter);
 
             recy_hot.setAdapter(lRecyclerViewAdapter);
+
+            recy_hot.setOnRefreshListener(this);
+
+            recy_hot.setOnLoadMoreListener(this);
+
+            //recy_hot.setRefreshing(true);
 
 
         } else {
@@ -129,8 +147,9 @@ public class HotFragment extends BaseFragment implements View.OnClickListener {
 
             if (jsonObject.getString("status").equals("0")) {
                 JSONObject data = jsonObject.getJSONObject("data");
-
-                parseDetailData(data);
+                next_start = data.getString("next_start");
+                Log.d("hc", "next_start " + next_start);
+                parseViewPagerData(data);
 
                 JSONArray elements = data.getJSONArray("elements");
                 for (int i = 0; i < elements.length(); i++) {
@@ -139,17 +158,17 @@ public class HotFragment extends BaseFragment implements View.OnClickListener {
                         HotBean hotBean = new HotBean();
                         JSONArray hot_data = json.getJSONArray("data");
                         JSONObject detailObject = (JSONObject) hot_data.get(0);
-                        Log.d("hc", "detailObject " + detailObject.toString());
+                        // Log.d("hc", "detailObject " + detailObject.toString());
                         String cover_image_default = detailObject.getString("cover_image_default");
-                        Log.d("hc", "cover_image_default " + cover_image_default);
+                        //  Log.d("hc", "cover_image_default " + cover_image_default);
                         hotBean.setCover_image_default(cover_image_default);
                         String cover_image = detailObject.getString("cover_image");
                         hotBean.setCover_image(cover_image);
-
                         mHotBean.add(hotBean);
                     }
                 }
                 //添加头部viewpager
+
                 View headView = initHeaderView(mViewPagerBean);
 
                 if (!isAddHeaderView) {
@@ -173,7 +192,7 @@ public class HotFragment extends BaseFragment implements View.OnClickListener {
      * @param dataResults dataResults
      * @throws JSONException
      */
-    private void parseDetailData(JSONObject dataResults) throws JSONException {
+    private void parseViewPagerData(JSONObject dataResults) throws JSONException {
         JSONArray mElementsArray = dataResults.getJSONArray("elements");
         int length = mElementsArray.length();
         mViewPagerBean.clear();
@@ -192,7 +211,6 @@ public class HotFragment extends BaseFragment implements View.OnClickListener {
                 }
 
             }
-
         }
 
     }
@@ -225,9 +243,11 @@ public class HotFragment extends BaseFragment implements View.OnClickListener {
             }
         });
         // 增加底部指示器
+
+
         initdots();
+
         // 自动轮播
-        runTask = new AuToRunTask();
         runTask.start();
         // autoScorll();
         return headerView;
@@ -236,7 +256,7 @@ public class HotFragment extends BaseFragment implements View.OnClickListener {
 
     //创建底部指示位置的导航栏
     private void initdots() {
-
+        Log.d("hc", "dots");
         mBottomImages = new ImageView[mViewPagerBean.size()];
 
         for (int i = 0; i < mBottomImages.length; i++) {
@@ -264,11 +284,12 @@ public class HotFragment extends BaseFragment implements View.OnClickListener {
 
             @Override
             public void onPageSelected(int position) {
-
+                //  Log.d("hc","position " + position);
+                //  Log.d("hc","position % mViewPagerBean.size() " + position % mViewPagerBean.size());
                 // 一定几个图片，几个圆点，但注意是从0开始的
                 int total = mBottomImages.length;
                 for (int j = 0; j < total; j++) {
-                    if (j == position % mViewPagerBean.size()) {
+                    if (j == (position % mViewPagerBean.size())) {
                         mBottomImages[j % mViewPagerBean.size()].setBackgroundResource(R.drawable.indicator_select);
                     } else {
                         mBottomImages[j % mViewPagerBean.size()].setBackgroundResource(R.drawable.indicator_not_select);
@@ -332,18 +353,128 @@ public class HotFragment extends BaseFragment implements View.OnClickListener {
             }
         }
     };
-    // 自动轮询的实现
-    boolean flag;
-    private AuToRunTask runTask;
+
+
+    @Override
+    public void onRefresh() {
+        RecyclerViewStateUtils.setFooterViewState(recy_hot, LoadingFooter.State.Normal);
+        mHotBean.clear();
+        hotAdapter.notifyDataSetChanged();
+        isRefresh = true;
+        runTask.stop();
+        // trips.edit().putBoolean("isRefresh",false).commit();
+        requestData();
+    }
+
+    private void requestData() {
+        OkGo.get(Constans.TRIPS_HOT_URL)
+                .execute(new StringCallback() {
+                    @Override
+                    public void onSuccess(String s, Call call, Response response) {
+                        // parseJson(s);
+                        //DataStore.getInstance().saveHotListData(s);
+                        //   Log.d("hc","isRefresh " + isRefresh);
+                        parseJson(s);
+                        isRefresh = false;
+                        recy_hot.refreshComplete();
+                        // runTask.start();
+                        RecyclerViewStateUtils.setFooterViewState(recy_hot,
+                                LoadingFooter.State.Normal);
+                        hotAdapter.notifyDataSetChanged();
+                        //viewPagerAdapter.notifyDataSetChanged();
+                    }
+                });
+    }
+
+    @Override
+    public void onLoadMore() {
+        LoadingFooter.State state = RecyclerViewStateUtils
+                .getFooterViewState(recy_hot);
+        if (state == LoadingFooter.State.Loading) {
+            return;
+        }
+
+        RecyclerViewStateUtils
+                .setFooterViewState(getActivity(), recy_hot, 10, LoadingFooter.State.Loading, null);
+
+        if (!TextUtils.isEmpty(next_start)) {
+            OkGo.get(Constans.TRIPS_HOT_URL + "?next_start=" + next_start)
+                    .execute(new StringCallback() {
+                        @Override
+                        public void onSuccess(String s, Call call, Response response) {
+                            parseDataJson(s);
+                        }
+                    });
+        }
+
+    }
+
+    private void parseDataJson(String s) {
+        List<HotBean> mDetailBeanDatasMore = new ArrayList<>();
+        try {
+            JSONObject jsonObject = new JSONObject(s);
+            if (jsonObject.getString("status").equals("0")) {
+
+                JSONObject dataResults = jsonObject.getJSONObject("data");  //data
+                next_start = dataResults.getString("next_start");
+                JSONArray eleArrays = dataResults.getJSONArray("elements");
+
+                int length = eleArrays.length();
+                for (int i = 0; i < length; i++) {
+                    JSONObject js = eleArrays.getJSONObject(i);
+                    JSONArray ja = js.getJSONArray("data");
+                    JSONObject detailObject = (JSONObject) ja.get(0);
+
+                    //   JSONArray jsonArray = mElementsObject.getJSONArray("data");
+                    // JSONObject detailObject = (JSONObject) jsonArray.get(0);
+                    HotBean bean = new HotBean();
+                    // Type type = new TypeToken<DetailBean>(){}.getType();
+                    //  bean = new Gson().fromJson(detailObject.toString(),type);
+                    bean.setCover_image(detailObject.getString("cover_image_default"));
+                    bean.setName(detailObject.getString("name"));
+                    bean.setFirst_day(detailObject.getString("first_day"));
+                    bean.setDay_count(detailObject.getInt("day_count"));
+                    bean.setView_count(detailObject.getInt("view_count"));
+                    bean.setPopular_place_str(detailObject.getString("popular_place_str"));
+                    JSONObject userObject = detailObject.getJSONObject("user");
+                    HotBean.UserBean entity = new HotBean.UserBean();
+                    entity.setName(userObject.getString("name"));
+                    entity.setAvatar_m(userObject.getString("avatar_m"));
+                    entity.setAvatar_l(userObject.getString("avatar_l"));
+                    entity.setAvatar_s(userObject.getString("avatar_s"));
+                    entity.setId(userObject.getInt("id"));
+                    entity.setUser_desc(userObject.getString("user_desc"));
+                    entity.setPoints(userObject.getInt("points"));
+                    bean.setUser(entity);
+                    bean.setShare_url(detailObject.getString("share_url"));
+                    bean.setId(detailObject.getInt("id"));
+                    mDetailBeanDatasMore.add(bean);
+                    // Log.d("HotTripFragment", "result:" + result);
+                }
+
+            }
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        mHotBean.addAll(mDetailBeanDatasMore);
+        hotAdapter.notifyDataSetChanged();
+        recy_hot.refreshComplete();
+        RecyclerViewStateUtils
+                .setFooterViewState(recy_hot, LoadingFooter.State.Normal);
+    }
+
+
 
     public class AuToRunTask implements Runnable {
-
         @Override
         public void run() {
             if (flag) {
                 Util.cancel(this);  // 取消之前
                 int currentItem = mViewPager.getCurrentItem();
                 currentItem++;
+                Log.d("hc", "currentItem " + currentItem);
                 mViewPager.setCurrentItem(currentItem);
                 //  延迟执行当前的任务
                 Util.postDelayed(this, 5000);// 递归调用
@@ -351,6 +482,7 @@ public class HotFragment extends BaseFragment implements View.OnClickListener {
         }
 
         public void start() {
+            Log.d("hc", "start");
             if (!flag) {
                 Util.cancel(this);  // 取消之前
                 flag = true;

@@ -42,7 +42,6 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="behind"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name="com.zed.activity.BannerDetailActivity"></activity>
     </application>
 
 </manifest>
