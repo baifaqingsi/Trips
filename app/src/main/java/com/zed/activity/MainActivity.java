@@ -24,7 +24,7 @@ import com.zed.fragment.HotFragment;
 import com.zed.fragment.OrderFragment;
 import com.zed.fragment.SettingFragment;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private DrawerLayout mDrawerLayout;
     private Toolbar mToolbar;
@@ -41,19 +41,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private ListView menu_left_lv;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        // Log.d("hc","handler name M"+mHandler.toString());
-
-        initView();
-
-        initEnevt();
-
-
-
+    protected int getlayoutID() {
+        return R.layout.activity_main;
     }
 
-    private void initEnevt() {
+    @Override
+    public void initEvent() {
+        super.initEvent();
         ActionBarDrawerToggle mDrawerToggle = new ActionBarDrawerToggle(this,
                 mDrawerLayout,
                 mToolbar,
@@ -61,11 +55,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 R.string.drawer_close);
         mDrawerToggle.syncState();//初始化状态
         mDrawerLayout.setDrawerListener(mDrawerToggle);
-
     }
 
-    private void initView() {
-        setContentView(R.layout.activity_main);
+    @Override
+    protected void initView() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.main_drawer_layout);
         mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
         mToolbar.setTitleTextAppearance(MainActivity.this,R.style.ToolbarTitleSize);

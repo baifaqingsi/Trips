@@ -19,6 +19,15 @@ public class BaseApplication extends Application {
     private static Context mContext;
     private static Handler handler;
 
+    /**
+     * log 开关
+     *
+     * @return
+     */
+    public static boolean getLogToggle() {
+        return true;
+    }
+
     public static Handler getHandler() {
         return handler;
     }

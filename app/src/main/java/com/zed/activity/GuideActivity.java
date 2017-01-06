@@ -20,7 +20,7 @@ import com.zed.fragment.HotFragment;
 import com.zed.trips.R;
 import com.zed.view.CustomVedioView;
 
-public class GuideActivity extends AppCompatActivity {
+public class GuideActivity extends BaseActivity {
 
     private CustomVedioView guideCvv;
     private Button guidebtn;
@@ -43,10 +43,10 @@ public class GuideActivity extends AppCompatActivity {
         }
     };
 
+
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
+    protected int getlayoutID() {
+        return R.layout.activity_guide;
     }
 
     private void initEnevt() {
@@ -71,7 +71,6 @@ public class GuideActivity extends AppCompatActivity {
                 startActivity();
             }
         });
-        Log.d("hc","initEnevt");
 
         /////////动态注册广播
 
@@ -82,8 +81,9 @@ public class GuideActivity extends AppCompatActivity {
         registerReceiver(netReceiver, mFilter);
     }
 
-    private void initView() {
-        setContentView(R.layout.activity_guide);
+    @Override
+    protected void initView() {
+
         guideCvv = (CustomVedioView) findViewById(R.id.guide_cvv);
         guidebtn = (Button) findViewById(R.id.guide_btn);
         guideiv = (ImageView) findViewById(R.id.guide_iv);

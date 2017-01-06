@@ -1,6 +1,7 @@
 package com.zed.adapter;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,11 +9,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.makeramen.RoundedImageView;
 import com.zed.bean.ViewPagerBean;
 import com.zed.trips.R;
+import com.zed.utils.LogUtils;
 import com.zed.utils.Util;
 
 import java.util.ArrayList;
@@ -21,12 +24,13 @@ import java.util.List;
 /**
  * Created by hc on 16-12-28.
  */
-public class ViewPagerAdapter extends PagerAdapter {
+public abstract class ViewPagerAdapter extends PagerAdapter {
 
     private List<ViewPagerBean> mData;
     private Activity context;
     private List<RoundedImageView> imageViews = new ArrayList<RoundedImageView>();
     private View view;
+    private Intent intent;
 
     public ViewPagerAdapter(Activity context, List<ViewPagerBean> datas) {
         this.context = context;
@@ -43,7 +47,7 @@ public class ViewPagerAdapter extends PagerAdapter {
             image.setScaleType(ImageView.ScaleType.CENTER_CROP);
             image.setLayoutParams(new FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT));
             // Uri uri = Uri.parse("http://photos.breadtrip.com/covers_2016_02_18_46d0c9d680e28825b76f280f777bf080.png?imageView2/2/w/750/format/jpg/interlace/1/");
-            Log.d("hc", "getImage_url " + datas.get(i).getImage_url());
+            //Log.d("hc", "getImage_url " + datas.get(i).getImage_url());
             Glide.with(context).load(datas.get(i).getImage_url()).asBitmap().into(image);
             //  image.setImageURI(uri);
             imageViews.add(image);
@@ -57,13 +61,24 @@ public class ViewPagerAdapter extends PagerAdapter {
     }
 
     @Override
-    public Object instantiateItem(ViewGroup container, int position) {
+    public Object instantiateItem(ViewGroup container, final int position) {
 
         Util.removeParent(imageViews.get(position % mData.size()));
 
         container.addView(imageViews.get(position % mData.size()));
+
+        // LogUtils.d("position % mData.size() "+ position % mData.size() + "position" + position);
+
+        imageViews.get(position % mData.size()).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                goActivity(position % mData.size());
+            }
+        });
         return imageViews.get(position % mData.size());
     }
+
+    protected abstract void goActivity(int position);
 
     @Override
     public int getCount() {

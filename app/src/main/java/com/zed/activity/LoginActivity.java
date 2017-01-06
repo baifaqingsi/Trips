@@ -25,7 +25,7 @@ import org.json.JSONObject;
 import com.zed.trips.R;
 import com.zed.utils.Constans;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView cancel_login;
     private ImageView qq_login;
@@ -41,14 +41,12 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        initView();
-        // Log.d("hc","handler name L"+mHandler.toString());
+    protected int getlayoutID() {
+        return R.layout.activity_login;
     }
 
-    private void initView() {
-        setContentView(R.layout.activity_login);
+    @Override
+    protected void initView() {
         cancel_login = (ImageView) findViewById(R.id.cancel_login);
         cancel_login.setOnClickListener(this);
         qq_login = (ImageView) findViewById(R.id.qq_login);

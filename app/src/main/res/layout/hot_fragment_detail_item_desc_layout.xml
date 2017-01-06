@@ -13,6 +13,7 @@
         android:textSize="@dimen/sp_16" />
 
     <LinearLayout
+        android:layout_below="@id/tv_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
@@ -45,7 +46,6 @@
 
                 <TextView
                     style="@style/DetailStyle"
-                    android:layout_marginLeft="@dimen/dp_6"
                     android:text="@string/day" />
 
                 <TextView
@@ -55,7 +55,6 @@
 
                 <TextView
                     style="@style/DetailStyle"
-                    android:layout_marginLeft="@dimen/dp_6"
                     android:text="@string/view_count" />
             </LinearLayout>
 
@@ -73,18 +72,34 @@
         android:id="@+id/img_avator"
         android:layout_width="20dp"
         android:layout_height="20dp"
+        android:src="@drawable/actionbar_bg"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp" />
 
     <TextView
+        style="@style/DetailStyle"
+        android:text="@string/by"
+        android:textColor="@color/White"
+        android:layout_marginLeft="11dp"
+        android:layout_marginStart="11dp"
+        android:id="@+id/by"
+        android:textSize="15dp"
+        android:layout_alignTop="@+id/tv_user_name"
+        android:layout_toRightOf="@+id/img_avator"
+        android:layout_toEndOf="@+id/img_avator" />
+
+    <TextView
+        android:text="你好"
+        android:textSize="15dp"
         android:id="@+id/tv_user_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="12dp"
         android:textColor="@color/White"
-        android:layout_marginLeft="@dimen/dp_10"
-        android:layout_toRightOf="@+id/img_avator" />
+        android:layout_marginLeft="6dp"
+        android:layout_marginStart="6dp"
+        android:layout_alignBottom="@+id/img_avator"
+        android:layout_toRightOf="@+id/by"
+        android:layout_toEndOf="@+id/by" />
 
 </RelativeLayout>

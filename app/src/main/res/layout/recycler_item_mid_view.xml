@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:background="#FBF7ED"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:weightSum="1">
+
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mid_iv"
+        android:src="@drawable/im_bind_phone_get_code_normal"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/Black"
+        android:layout_gravity="center_horizontal"
+        android:text="by huangchao" />
+
+    <TextView
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/Black"
+        android:textSize="30dp"
+        android:layout_gravity="center_horizontal"
+        android:text="体验生活" />
+
+    <View
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:background="#000"
+        android:layout_height="1dp" />
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/Black"
+            android:text="2016.02.18\n8天"
+            android:layout_weight="1" />
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/Black"
+            android:text="里程\n989km"
+            android:layout_weight="1" />
+
+        <TextView
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/Black"
+            android:text="喜欢\n145"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <View
+        android:layout_marginTop="@dimen/dp_10"
+        android:layout_width="match_parent"
+        android:background="@drawable/actionbar_bg"
+        android:layout_height="@dimen/dp_5" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/White">
+
+        <ImageView
+            android:layout_marginTop="@dimen/dp_10"
+            android:id="@+id/im_poi_category_browse_attraction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/im_poi_category_browse_attraction"
+            android:layout_marginLeft="30dp" />
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/im_poi_category_browse_hotel"
+            android:id="@+id/im_poi_category_browse_hotel"
+            android:layout_below="@+id/im_poi_category_browse_attraction"
+            android:layout_alignRight="@+id/im_poi_category_browse_attraction"
+            android:layout_alignEnd="@+id/im_poi_category_browse_attraction" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/im_poi_category_browse_restaurant"
+            android:id="@+id/im_poi_category_browse_restaurant"
+            android:layout_alignTop="@+id/im_poi_category_browse_attraction"
+            android:layout_toRightOf="@+id/textView3"
+            android:layout_toEndOf="@+id/textView3" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/im_poi_category_browse_shoping"
+            android:src="@mipmap/im_poi_category_browse_shoping"
+            android:layout_alignTop="@+id/im_poi_category_browse_hotel"
+            android:layout_alignLeft="@+id/im_poi_category_browse_restaurant"
+            android:layout_alignStart="@+id/im_poi_category_browse_restaurant" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginTop="15dp"
+            android:id="@+id/photo"
+            android:layout_below="@+id/im_poi_category_browse_hotel"
+            android:layout_alignLeft="@+id/im_poi_category_browse_hotel"
+            android:layout_alignStart="@+id/im_poi_category_browse_hotel" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="huangchao"
+            android:id="@+id/address"
+            android:layout_alignBottom="@+id/photo"
+            android:layout_toRightOf="@+id/im_poi_category_browse_hotel"
+            android:layout_toEndOf="@+id/im_poi_category_browse_hotel"
+            android:layout_marginLeft="35dp"
+            android:layout_marginStart="35dp"
+            android:textColor="@color/Black" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="查看线路日程"
+            android:id="@+id/textView3"
+            android:layout_marginTop="20dp"
+            android:textColor="@color/Black"
+            android:layout_below="@+id/address"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="景点"
+            android:id="@+id/textView2"
+            android:textColor="@color/Black"
+            android:layout_above="@+id/im_poi_category_browse_hotel"
+            android:layout_alignLeft="@+id/textView4"
+            android:layout_alignStart="@+id/textView4" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="住宿"
+            android:id="@+id/textView4"
+            android:textColor="@color/Black"
+            android:layout_alignTop="@+id/textView8"
+            android:layout_toRightOf="@+id/textView7"
+            android:layout_toEndOf="@+id/textView7" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="3"
+            android:id="@+id/textView5"
+            android:textColor="@color/Black"
+            android:layout_marginLeft="17dp"
+            android:layout_marginStart="17dp"
+            android:layout_above="@+id/im_poi_category_browse_hotel"
+            android:layout_toRightOf="@+id/im_poi_category_browse_shoping"
+            android:layout_toEndOf="@+id/im_poi_category_browse_shoping" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="6"
+            android:id="@+id/textView6"
+            android:textColor="@color/Black"
+            android:layout_alignBottom="@+id/im_poi_category_browse_shoping"
+            android:layout_alignLeft="@+id/textView5"
+            android:layout_alignStart="@+id/textView5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="12"
+            android:id="@+id/textView7"
+            android:textColor="@color/Black"
+            android:layout_alignBottom="@+id/im_poi_category_browse_attraction"
+            android:layout_toRightOf="@+id/im_poi_category_browse_attraction"
+            android:layout_toEndOf="@+id/im_poi_category_browse_attraction"
+            android:layout_marginLeft="16dp"
+            android:layout_marginStart="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="3"
+            android:id="@+id/textView8"
+            android:textColor="@color/Black"
+            android:layout_above="@+id/photo"
+            android:layout_alignRight="@+id/textView7"
+            android:layout_alignEnd="@+id/textView7" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="餐饮"
+            android:id="@+id/textView9"
+            android:textColor="@color/Black"
+            android:layout_above="@+id/im_poi_category_browse_hotel"
+            android:layout_toRightOf="@+id/textView5"
+            android:layout_toEndOf="@+id/textView5" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:text="餐饮"
+            android:id="@+id/textView10"
+            android:textColor="@color/Black"
+            android:layout_alignTop="@+id/textView6"
+            android:layout_toRightOf="@+id/textView6"
+            android:layout_toEndOf="@+id/textView6" />
+
+    </RelativeLayout>
+
+
+</LinearLayout>

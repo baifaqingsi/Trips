@@ -42,6 +42,8 @@
             android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="behind"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity android:name="com.zed.activity.ClickRecyclerItemActivity" />
+        <activity android:name="com.zed.activity.ClickViewPagerItemActivity"></activity>
     </application>
 
 </manifest>

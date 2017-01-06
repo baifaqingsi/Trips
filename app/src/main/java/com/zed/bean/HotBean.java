@@ -87,6 +87,45 @@ public class HotBean {
         this.cover_image_default = cover_image_default;
     }
 
+    @Override
+    public String toString() {
+        return "HotBean{" +
+                "cover_image_default='" + cover_image_default + '\'' +
+                ", waypoints=" + waypoints +
+                ", wifi_sync=" + wifi_sync +
+                ", last_day='" + last_day + '\'' +
+                ", id=" + id +
+                ", view_count=" + view_count +
+                ", privacy=" + privacy +
+                ", day_count=" + day_count +
+                ", index_title='" + index_title + '\'' +
+                ", comment_count=" + comment_count +
+                ", share_url='" + share_url + '\'' +
+                ", recommended=" + recommended +
+                ", version=" + version +
+                ", spot_count=" + spot_count +
+                ", mileage=" + mileage +
+                ", description='" + description + '\'' +
+                ", last_modified=" + last_modified +
+                ", user=" + user +
+                ", popular_place_str='" + popular_place_str + '\'' +
+                ", date_complete=" + date_complete +
+                ", device=" + device +
+                ", date_added=" + date_added +
+                ", cover_image_w640='" + cover_image_w640 + '\'' +
+                ", name='" + name + '\'' +
+                ", defaultX=" + defaultX +
+                ", start_point=" + start_point +
+                ", cover_image_1600='" + cover_image_1600 + '\'' +
+                ", summary='" + summary + '\'' +
+                ", is_hot_trip=" + is_hot_trip +
+                ", recommendations=" + recommendations +
+                ", cover_image='" + cover_image + '\'' +
+                ", first_day='" + first_day + '\'' +
+                ", is_featured_trip=" + is_featured_trip +
+                '}';
+    }
+
     public int getWaypoints() {
         return waypoints;
     }
@@ -382,6 +421,33 @@ public class HotBean {
         private Object country_code;
         private boolean email_verified;
         private boolean is_hunter;
+
+        @Override
+        public String toString() {
+            return "UserBean{" +
+                    "location_name='" + location_name + '\'' +
+                    ", name='" + name + '\'' +
+                    ", resident_city_id=" + resident_city_id +
+                    ", mobile='" + mobile + '\'' +
+                    ", gender=" + gender +
+                    ", avatar_m='" + avatar_m + '\'' +
+                    ", cover='" + cover + '\'' +
+                    ", custom_url='" + custom_url + '\'' +
+                    ", id=" + id +
+                    ", birthday='" + birthday + '\'' +
+                    ", country_num=" + country_num +
+                    ", avatar_s='" + avatar_s + '\'' +
+                    ", country_code=" + country_code +
+                    ", email_verified=" + email_verified +
+                    ", is_hunter=" + is_hunter +
+                    ", cdc2=" + cdc2 +
+                    ", avatar_l='" + avatar_l + '\'' +
+                    ", email='" + email + '\'' +
+                    ", user_desc='" + user_desc + '\'' +
+                    ", points=" + points +
+                    '}';
+        }
+
         private boolean cdc2;
         private String avatar_l;
         private String email;
