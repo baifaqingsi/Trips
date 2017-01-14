@@ -26,7 +26,7 @@ public class SettingFragment extends BaseFragment {
         String[] items = getResources().getStringArray(R.array.setting_lv);
         //创建ArrayAdapter
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                (getActivity(),R.layout.setting_item,items);
+                (getActivity(), R.layout.setting_item, items);
         //获取ListView对象，通过调用setAdapter方法为ListView设置Adapter设置适配器
         listView.setAdapter(adapter);
         return view;

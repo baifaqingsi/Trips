@@ -6,30 +6,32 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="false"
     tools:context="com.zed.activity.MainActivity">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+
         <android.support.v7.widget.Toolbar
             android:id="@+id/main_toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="@mipmap/actionbar_bg_featured"/>
+            android:background="@mipmap/actionbar_bg_featured" />
         <!--内容显示布局-->
         <FrameLayout
             android:id="@+id/main_frame_content"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
+            android:layout_height="match_parent" />
     </LinearLayout>
 
-   <!-- <android.support.design.widget.NavigationView
-        android:id="@+id/main_navigation_view"
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_gravity="left"
-        app:headerLayout="@layout/navigation_header"
-        app:menu="@menu/drawer"
-        android:background="@mipmap/bg_homepage_left_drawer"/>-->
+    <!-- <android.support.design.widget.NavigationView
+         android:id="@+id/main_navigation_view"
+         android:layout_width="wrap_content"
+         android:layout_height="match_parent"
+         android:layout_gravity="left"
+         app:headerLayout="@layout/navigation_header"
+         app:menu="@menu/drawer"
+         android:background="@mipmap/bg_homepage_left_drawer"/>-->
     <include
         android:id="@+id/drawer_left"
         android:layout_width="300dp"

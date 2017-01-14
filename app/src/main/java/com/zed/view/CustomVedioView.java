@@ -1,12 +1,9 @@
 package com.zed.view;
 
 import android.content.Context;
-import android.media.MediaPlayer;
 import android.net.Uri;
 import android.util.AttributeSet;
 import android.widget.VideoView;
-
-import java.net.URL;
 
 /**
  * Created by hc on 16-12-13.
@@ -29,11 +26,12 @@ public class CustomVedioView extends VideoView {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
         int width = getDefaultSize(0, widthMeasureSpec);
         int height = getDefaultSize(0, heightMeasureSpec);
-        setMeasuredDimension(width,height);
+        setMeasuredDimension(width, height);
     }
 
     /***
      * 设置播放路径
+     *
      * @param uri
      */
     public void playVideo(Uri uri) {

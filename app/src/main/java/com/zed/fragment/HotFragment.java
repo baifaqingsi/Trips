@@ -118,7 +118,7 @@ public class HotFragment extends BaseFragment implements View.OnClickListener, O
                 public void onItemClick(View view, int position) {
                     Intent intent = new Intent(getActivity(), ClickRecyclerItemActivity.class);
                     Bundle bundle = new Bundle();
-                    LogUtils.d("share_url " + mHotBean.get(position).getShare_url());
+                    //  LogUtils.d("share_url " + mHotBean.get(position).getShare_url());
                     bundle.putString("share_url", mHotBean.get(position).getShare_url());
                     intent.putExtras(bundle);
                     startActivity(intent);
@@ -362,7 +362,9 @@ public class HotFragment extends BaseFragment implements View.OnClickListener, O
 
    /* private Handler mHandler = new Handler();
 
-    *//**
+    */
+
+    /**
      * 自动滚动
      *//*
     private void autoScorll() {
@@ -522,7 +524,6 @@ public class HotFragment extends BaseFragment implements View.OnClickListener, O
         RecyclerViewStateUtils
                 .setFooterViewState(recy_hot, LoadingFooter.State.Normal);
     }
-
 
 
     public class AuToRunTask implements Runnable {

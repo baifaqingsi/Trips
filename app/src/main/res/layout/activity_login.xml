@@ -57,8 +57,7 @@
             <View
                 android:layout_width="1px"
                 android:layout_height="fill_parent"
-                android:background="@color/White"
-                />
+                android:background="@color/White" />
 
             <ImageView
                 android:layout_width="100dp"
@@ -71,8 +70,8 @@
             <View
                 android:layout_width="1px"
                 android:layout_height="fill_parent"
-                android:background="@color/White"
-                />
+                android:background="@color/White" />
+
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
@@ -95,14 +94,13 @@
                 android:background="@color/White"
                 android:layout_marginTop="30dp"
                 android:layout_marginLeft="20dp"
-                android:layout_marginRight="20dp"
-                />
+                android:layout_marginRight="20dp" />
+
             <TextView
                 android:layout_marginTop="20dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/use_account_login"
-                />
+                android:text="@string/use_account_login" />
 
             <View
                 android:layout_height="1px"
@@ -111,8 +109,7 @@
                 android:layout_marginTop="30dp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
-                android:layout_weight="1"
-                />
+                android:layout_weight="1" />
         </LinearLayout>
 
         <LinearLayout
@@ -121,6 +118,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+
             <Button
                 android:textColor="@color/Black"
                 android:layout_marginTop="20dp"

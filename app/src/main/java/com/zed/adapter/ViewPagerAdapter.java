@@ -3,19 +3,16 @@ package com.zed.adapter;
 import android.app.Activity;
 import android.content.Intent;
 import android.support.v4.view.PagerAdapter;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.makeramen.RoundedImageView;
 import com.zed.bean.ViewPagerBean;
 import com.zed.trips.R;
-import com.zed.utils.LogUtils;
 import com.zed.utils.Util;
 
 import java.util.ArrayList;

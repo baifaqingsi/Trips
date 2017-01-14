@@ -2,9 +2,7 @@ package com.zed.activity;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.Bundle;
 import android.os.SystemClock;
-import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
@@ -18,12 +16,11 @@ import com.tencent.connect.common.Constants;
 import com.tencent.tauth.IUiListener;
 import com.tencent.tauth.Tencent;
 import com.tencent.tauth.UiError;
+import com.zed.trips.R;
+import com.zed.utils.Constans;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import com.zed.trips.R;
-import com.zed.utils.Constans;
 
 public class LoginActivity extends BaseActivity implements View.OnClickListener {
 

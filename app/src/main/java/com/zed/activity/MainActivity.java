@@ -3,11 +3,9 @@ package com.zed.activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Build;
-import android.os.Bundle;
 import android.support.design.widget.NavigationView;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
@@ -17,12 +15,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.zed.trips.R;
-import com.zed.utils.Constans;
-import com.zed.utils.Util;
 import com.zed.fragment.HotFragment;
 import com.zed.fragment.OrderFragment;
 import com.zed.fragment.SettingFragment;
+import com.zed.trips.R;
+import com.zed.utils.Constans;
+import com.zed.utils.Util;
 
 public class MainActivity extends BaseActivity implements View.OnClickListener {
 
@@ -61,7 +59,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     protected void initView() {
         mDrawerLayout = (DrawerLayout) findViewById(R.id.main_drawer_layout);
         mToolbar = (Toolbar) findViewById(R.id.main_toolbar);
-        mToolbar.setTitleTextAppearance(MainActivity.this,R.style.ToolbarTitleSize);
+        mToolbar.setTitleTextAppearance(MainActivity.this, R.style.ToolbarTitleSize);
         drawer_left = findViewById(R.id.drawer_left);
         //左菜单登录模块
         login_left = drawer_left.findViewById(R.id.login_left);
@@ -77,14 +75,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         String[] items = getResources().getStringArray(R.array.menu_letf_lv);
         //创建ArrayAdapter
         final ArrayAdapter<String> adapter = new ArrayAdapter<String>
-                (this,R.layout.menu_left_lv_item,items);
+                (this, R.layout.menu_left_lv_item, items);
         //获取ListView对象，通过调用setAdapter方法为ListView设置Adapter设置适配器
         menu_left_lv.setAdapter(adapter);
         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_content, new HotFragment()).commit();
         menu_left_lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
+                switch (position) {
                     case 0:
                         getSupportFragmentManager().beginTransaction().replace(R.id.main_frame_content, new HotFragment()).commit();
                         mToolbar.setTitle("");
@@ -121,7 +119,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.cancel_login:
             case R.id.login_tv:
                 startActivityForResult(new Intent(MainActivity.this, LoginActivity.class), Constans.UPDATE);

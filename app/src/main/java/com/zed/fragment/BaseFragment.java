@@ -16,7 +16,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View view=initView(inflater, container, savedInstanceState);
+        View view = initView(inflater, container, savedInstanceState);
 
         initEnevt();
 

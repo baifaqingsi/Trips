@@ -5,12 +5,12 @@
     android:background="@mipmap/bg_homepage_left_drawer"
     android:orientation="vertical">
 
-        <include
-            android:id="@+id/login_left"
-            layout="@layout/login_left" />
+    <include
+        android:id="@+id/login_left"
+        layout="@layout/login_left" />
 
-        <include
-            android:id="@+id/menu_left"
-            layout="@layout/menu_left"/>
+    <include
+        android:id="@+id/menu_left"
+        layout="@layout/menu_left" />
 
 </LinearLayout>

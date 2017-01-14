@@ -6,8 +6,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.zed.recycler.adapter.BaseViewHolder;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;

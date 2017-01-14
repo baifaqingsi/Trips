@@ -6,4 +6,4 @@
     android:layout_height="match_parent"
     android:textSize="15dp"
     android:padding="15dp"
-    android:gravity="center_horizontal"/>
+    android:gravity="center_horizontal" />

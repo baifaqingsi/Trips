@@ -7,10 +7,8 @@ import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -30,16 +28,16 @@ public class GuideActivity extends BaseActivity {
         @Override
         public void handleMessage(Message msg) {
             super.handleMessage(msg);
-           switch (msg.what){
-               case 1:
-                   if (isFirstGuide()){
-                   initEnevt();
-               } else {
-                   startActivity(new Intent(GuideActivity.this,MainActivity.class));
-                       Log.d("hc","else");
-                       finish();
-               }
-           }
+            switch (msg.what) {
+                case 1:
+                    if (isFirstGuide()) {
+                        initEnevt();
+                    } else {
+                        startActivity(new Intent(GuideActivity.this, MainActivity.class));
+                        Log.d("hc", "else");
+                        finish();
+                    }
+            }
         }
     };
 
@@ -100,9 +98,10 @@ public class GuideActivity extends BaseActivity {
 
     /***
      * 是否第一次进入
+     *
      * @return
      */
-    private boolean isFirstGuide(){
+    private boolean isFirstGuide() {
         return trips.getBoolean("isFirstGuide", true);
     }
 
@@ -110,9 +109,9 @@ public class GuideActivity extends BaseActivity {
     /***
      * 进入主界面
      */
-    private void startActivity(){
-        startActivity(new Intent(GuideActivity.this,MainActivity.class));
-        trips.edit().putBoolean("isFirstGuide",false).commit();
+    private void startActivity() {
+        startActivity(new Intent(GuideActivity.this, MainActivity.class));
+        trips.edit().putBoolean("isFirstGuide", false).commit();
         finish();
     }
 }
