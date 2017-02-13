@@ -1,13 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.zed.activity.ClickViewPagerItemActivity">
+    android:fitsSystemWindows="true"
+    android:background="#FBF7ED"
+    tools:context="com.zed.fragment.HotFragment">
 
-        <com.zed.recycler.view.LRecyclerView
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:id="@+id/recycler_item_reclcler" />
+            android:orientation="vertical"
+            tools:context="com.zed.activity.ClickViewPagerItemActivity">
 
-</RelativeLayout>
+                <include
+                    android:id="@+id/recycler_item_head"
+                    layout="@layout/recycler_item_head_view" />
+
+                <com.zed.recycler.view.LRecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:id="@+id/recycler_item_reclcler"></com.zed.recycler.view.LRecyclerView>
+
+
+        </LinearLayout>
+</FrameLayout>

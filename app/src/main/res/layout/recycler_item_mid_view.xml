@@ -8,8 +8,8 @@
 
     <ImageView
         android:id="@+id/mid_iv"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_gravity="center_horizontal"
         android:src="@drawable/im_bind_phone_get_code_normal" />
 
@@ -100,7 +100,7 @@
             android:layout_alignBottom="@+id/attraction"
             android:layout_toRightOf="@+id/attraction"
             android:layout_toEndOf="@+id/attraction"
-            android:id="@+id/textView3" />
+            android:id="@+id/jingdian" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -108,9 +108,9 @@
             android:text="景点"
             android:textColor="@color/Black"
             android:id="@+id/textView2"
-            android:layout_alignTop="@+id/textView3"
-            android:layout_toRightOf="@+id/textView3"
-            android:layout_toEndOf="@+id/textView3" />
+            android:layout_alignTop="@+id/jingdian"
+            android:layout_toRightOf="@+id/jingdian"
+            android:layout_toEndOf="@+id/jingdian" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -127,7 +127,7 @@
             android:textColor="@color/Black"
             android:layout_marginLeft="40dp"
             android:layout_marginStart="40dp"
-            android:id="@+id/textView5"
+            android:id="@+id/zhusu"
             android:layout_alignTop="@+id/textView4"
             android:layout_alignLeft="@+id/hotel"
             android:layout_alignStart="@+id/hotel" />
@@ -139,8 +139,8 @@
             android:textColor="@color/Black"
             android:id="@+id/textView4"
             android:layout_alignBottom="@+id/hotel"
-            android:layout_toRightOf="@+id/textView5"
-            android:layout_toEndOf="@+id/textView5" />
+            android:layout_toRightOf="@+id/zhusu"
+            android:layout_toEndOf="@+id/zhusu" />
 
     </RelativeLayout>
 
@@ -166,7 +166,7 @@
             android:layout_alignBottom="@+id/restaurant"
             android:layout_toRightOf="@+id/restaurant"
             android:layout_toEndOf="@+id/restaurant"
-            android:id="@+id/tv3" />
+            android:id="@+id/canyin" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -174,9 +174,9 @@
             android:text="餐饮"
             android:textColor="@color/Black"
             android:id="@+id/tv2"
-            android:layout_alignTop="@+id/tv3"
-            android:layout_toRightOf="@+id/tv3"
-            android:layout_toEndOf="@+id/tv3" />
+            android:layout_alignTop="@+id/canyin"
+            android:layout_toRightOf="@+id/canyin"
+            android:layout_toEndOf="@+id/canyin" />
 
         <ImageView
             android:layout_width="wrap_content"
@@ -197,7 +197,7 @@
             android:layout_alignBottom="@+id/shoping"
             android:layout_alignLeft="@+id/shoping"
             android:layout_alignStart="@+id/shoping"
-            android:id="@+id/tv5" />
+            android:id="@+id/gouwu" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -206,17 +206,16 @@
             android:textColor="@color/Black"
             android:id="@+id/tv4"
             android:layout_alignBottom="@+id/shoping"
-            android:layout_toRightOf="@+id/tv5"
-            android:layout_toEndOf="@+id/tv5" />
+            android:layout_toRightOf="@+id/gouwu"
+            android:layout_toEndOf="@+id/gouwu" />
     </RelativeLayout>
 
     <LinearLayout
-        android:background="@color/White"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
         <ImageView
-            android:id="@+id/city"
+            android:id="@+id/city0"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@mipmap/ic_launcher"
@@ -224,7 +223,23 @@
             android:layout_marginLeft="20dp" />
 
         <ImageView
+            android:id="@+id/city1"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginLeft="10dp" />
+
+        <ImageView
             android:id="@+id/city2"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@mipmap/ic_launcher"
+            android:layout_marginTop="@dimen/dp_10"
+            android:layout_marginLeft="10dp" />
+
+        <ImageView
+            android:id="@+id/city3"
             android:layout_width="20dp"
             android:layout_height="20dp"
             android:src="@mipmap/ic_launcher"
