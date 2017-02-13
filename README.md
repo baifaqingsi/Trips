@@ -9,4 +9,4 @@
 #####侧拉界面
 ![image](https://github.com/baifaqingsi/Trips/blob/master/app/src/main/screenshots/Screenshot_20170213-064252.png)
 #####设置界面
-![image](https://github.com/baifaqingsi/Trips/blob/master/app/src/main/screenshots/Screenshot_20170213-064258.png）
+![image](https://github.com/baifaqingsi/Trips/blob/master/app/src/main/screenshots/Screenshot_20170213-064258.png)
